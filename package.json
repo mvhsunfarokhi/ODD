@@ -1,0 +1,20 @@
+{
+  "name": "odd-coffee-platform",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "npm --prefix apps/api run start:dev",
+    "dev:web": "npm --prefix apps/web run dev",
+    "build": "npm run build:api && npm run build:web",
+    "build:api": "npm --prefix apps/api run build",
+    "build:web": "npm --prefix apps/web run build",
+    "test": "npm run test:api && npm run test:web",
+    "test:api": "npm --prefix apps/api run test",
+    "test:web": "npm --prefix apps/web run test",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

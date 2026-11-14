@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Next.js and build output
+.next/
+**/.next/
+dist/
+**/dist/
+build/
+**/build/
+out/
+coverage/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Temporary files and operating-system metadata
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+
+# Local work and generated outputs
+work/
+work/reference.html
+outputs/

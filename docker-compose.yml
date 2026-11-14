@@ -1,0 +1,41 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: odd
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    environment:
+      PORT: 4000
+      MONGO_URI: mongodb://mongo:27017/odd
+      CLIENT_ORIGIN: http://localhost:3000
+    depends_on:
+      - mongo
+    ports:
+      - "4000:4000"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:4000/api
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000/api
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+volumes:
+  mongo_data:
